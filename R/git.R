@@ -77,7 +77,11 @@ print.git_result <- function(x, ...) {
 
 #' @export
 #' @method as.character git_result
-as.character.git_result <- function(x, ...) {
+as.character.git_result <- function(x, trim = TRUE, ...) {
     err <- attr(x, "err")
-    paste0(x, err)
+    out <- paste0(x, err)
+    if (trim) {
+        out <- trimws(out)
+    }
+    out
 }
