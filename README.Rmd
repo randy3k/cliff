@@ -1,5 +1,8 @@
 ---
-output: github_document
+output:
+  reprex::reprex_document:
+    advertise: false
+    html_preview: false
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -39,5 +42,8 @@ install.packages("git")
 
 ```{r example}
 library(git)
-## basic example code
+
+git("status")
+
+git("log", "--graph", "--oneline")
 ```
