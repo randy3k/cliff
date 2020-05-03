@@ -6,7 +6,7 @@ Authors@R:
            family = "Lai",
            role = c("aut", "cre", "cph"),
            email = "randy.cs.lai@gmail.com")
-Description: While "git2r" and "gert" provide excellent bindings to the "libgit2" library,
+Description: While 'git2r' and 'gert' provide excellent bindings to the 'libgit2' library,
     they do not provide all functionalities that the git command line offers. This simple
     wrapper of the git command line exposes the git command line to the R interface and
     allows R users to invoke git commands directly from R. One will find this package useful

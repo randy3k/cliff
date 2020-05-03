@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 
-[![Github Action](https://github.com/randy3k/git/workflows/build/badge.svg?branch=master)](https://github.com/randy3k/git)
+[![Github Action](!%5BR-CMD-check%5D\(https://github.com/randy3k/git/workflows/R-CMD-check/badge.svg\))](https://github.com/randy3k/git/actions)
 [![codecov](https://codecov.io/gh/randy3k/git/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/git)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
@@ -12,7 +12,7 @@
 
 Documentation: [http://randy3k.github.io/git](https://randy3k.github.io/git)
 
-While “git2r” and “gert” provide excellent bindings to the “libgit2” library,
+While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library,
 they do not provide all functionalities that the git command line offers. This simple
 wrapper of the git command line exposes the git command line to the R interface and
 allows R users to invoke git commands directly from R. One will find this package useful
@@ -35,18 +35,16 @@ git("status")
 #> On branch master
 #> Your branch is up to date with 'origin/master'.
 #> 
-#> Changes not staged for commit:
-#>   (use "git add <file>..." to update what will be committed)
-#>   (use "git restore <file>..." to discard changes in working directory)
+#> Changes to be committed:
+#>   (use "git restore --staged <file>..." to unstage)
+#>  modified:   DESCRIPTION
 #>  modified:   README.Rmd
-#> 
-#> Untracked files:
-#>   (use "git add <file>..." to include in what will be committed)
-#>  README.md
-#> 
-#> no changes added to commit (use "git add" and/or "git commit -a")
+#>  modified:   README.md
+#>  modified:   docs/index.html
+#>  modified:   docs/pkgdown.yml
 
 git("log", "--graph", "--oneline")
+#> * 798df8c update README
 #> * a5c6d58 update
 #> * 0d9ac61 init
 ```
