@@ -1,12 +1,16 @@
 Package: git
 Title: A Simple Wrapper for Git Command Line
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Randy",
            family = "Lai",
            role = c("aut", "cre", "cph"),
            email = "randy.cs.lai@gmail.com")
-Description: What the package does (one paragraph).
+Description: While "git2r" and "gert" provide excellent bindings to the "libgit2" library,
+    they do not provide all functionalities that the git command line offers. This simple
+    wrapper of the git command line exposes the git command line to the R interface and
+    allows R users to invoke git commands directly from R. One will find this package useful
+    if they need to perform complicated git operations locally.
 License: MIT + file LICENSE
 URL: https://github.com/randy3k/git
 BugReports: https://github.com/randy3k/git/issues

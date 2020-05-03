@@ -7,7 +7,15 @@ get_git_path  <- function() {
 }
 
 
+#' Running a Git Command
 #' @export
+#' @param ... the arguments pass to git command
+#' @param input text pass to stdin
+#' @param working_dir working directory
+#' @param throw_on_stderr throw an error if git command executed successfully but
+#'     stderr is not empty
+#' @param env additional environment variable pass to git
+#' @param just_the_proc return the underlying process object instead of the output
 git <- function(
         ...,
         input = NULL,
@@ -24,15 +32,15 @@ git <- function(
     args <- as.character(rlang::list2(...))
     p <- processx::process$new(
         git_path, args, stdin = "|", stdout = "|", stderr = "|", env = env, wd = working_dir)
-    if (just_the_proc) {
-        return(p)
-    }
     if (!is.null(input)) {
         r <- p$write_input(input)
         while (is.raw(r) && length(r) > 0) {
             r <- p$write_input(r)
         }
         close(p$get_input_connection())
+    }
+    if (just_the_proc) {
+        return(p)
     }
     p$wait()
     out <- p$read_all_output()
