@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 
-[![Github Action](!%5BR-CMD-check%5D\(https://github.com/randy3k/git/workflows/R-CMD-check/badge.svg\))](https://github.com/randy3k/git/actions)
+[![R-CMD-check](https://github.com/randy3k/git/workflows/R-CMD-check/badge.svg)](https://github.com/randy3k/git/actions)
 [![codecov](https://codecov.io/gh/randy3k/git/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/git)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
@@ -35,15 +35,16 @@ git("status")
 #> On branch master
 #> Your branch is up to date with 'origin/master'.
 #> 
-#> Changes to be committed:
-#>   (use "git restore --staged <file>..." to unstage)
-#>  modified:   DESCRIPTION
+#> Changes not staged for commit:
+#>   (use "git add <file>..." to update what will be committed)
+#>   (use "git restore <file>..." to discard changes in working directory)
 #>  modified:   README.Rmd
-#>  modified:   README.md
-#>  modified:   docs/index.html
-#>  modified:   docs/pkgdown.yml
+#> 
+#> no changes added to commit (use "git add" and/or "git commit -a")
 
 git("log", "--graph", "--oneline")
+#> * db76ce0 fix badge link
+#> * 9b1a848 use single quotes
 #> * 798df8c update README
 #> * a5c6d58 update
 #> * 0d9ac61 init
