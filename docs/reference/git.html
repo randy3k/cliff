@@ -131,7 +131,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>the arguments pass to git command</p></td>
+      <td><p>the arguments pass to git command, supports the
+<a href='https://rlang.r-lib.org/reference/nse-force.html'>big bang</a> operator <code>!!!</code></p></td>
     </tr>
     <tr>
       <th>input</th>
@@ -156,7 +157,66 @@ stderr is not empty</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a scalar character that may contains a trailing newline. Use <code><a href='https://rdrr.io/r/base/character.html'>as.character()</a></code>
+to ensure the trailing newline is trimmed.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If <code>git()</code> fails to locate the git binary automatically, the path to it could be
+specify in <code><a href='https://rdrr.io/r/base/options.html'>options(git_path = "/path/to/git")</a></code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='no'>td</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"git-examples"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>td</span>, <span class='kw'>showWarnings</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>td</span>)
+
+<span class='fu'>git</span>(<span class='st'>"init"</span>)</div><div class='output co'>#&gt; Initialized empty Git repository in /private/var/folders/w9/7w10svxj5093z4831n7m27w00000gp/T/Rtmphoa4om/git-examples/.git/</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"hello\n"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"hello.txt"</span>)
+
+<span class='fu'>git</span>(<span class='st'>"status"</span>)</div><div class='output co'>#&gt; On branch master
+#&gt; 
+#&gt; No commits yet
+#&gt; 
+#&gt; Untracked files:
+#&gt;   (use "git add &lt;file&gt;..." to include in what will be committed)
+#&gt; 	hello.txt
+#&gt; 
+#&gt; nothing added to commit but untracked files present (use "git add" to track)</div><div class='input'>
+<span class='fu'>git</span>(<span class='st'>"add"</span>, <span class='st'>"hello.txt"</span>)
+
+<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-m"</span>, <span class='st'>"initial message"</span>)</div><div class='output co'>#&gt; [master (root-commit) 9fb9a2b] initial message
+#&gt;  1 file changed, 1 insertion(+)
+#&gt;  create mode 100644 hello.txt</div><div class='input'>
+<span class='fu'>git</span>(<span class='st'>"log"</span>)</div><div class='output co'>#&gt; commit 9fb9a2ba22c4368183000044e56d27c61d036d67
+#&gt; Author: Randy Lai &lt;randy.cs.lai@gmail.com&gt;
+#&gt; Date:   Sun May 3 23:55:34 2020 -0700
+#&gt; 
+#&gt;     initial message</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"world\n"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"world.txt"</span>)
+
+<span class='fu'>git</span>(<span class='st'>"add"</span>, <span class='st'>"world.txt"</span>)
+
+<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-F"</span>, <span class='st'>"-"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"second message"</span>)</div><div class='output co'>#&gt; [master 1d79c5a] second message
+#&gt;  1 file changed, 1 insertion(+)
+#&gt;  create mode 100644 world.txt</div><div class='input'>
+(<span class='no'>sha</span> <span class='kw'>&lt;-</span> <span class='fu'>git</span>(<span class='st'>"rev-parse"</span>, <span class='st'>"HEAD"</span>))</div><div class='output co'>#&gt; 1d79c5a5d3fda6e8412bcf42c6fcf868f30eea8c</div><div class='input'>
+<span class='fu'>git</span>(<span class='st'>"show"</span>, <span class='no'>sha</span>)</div><div class='output co'>#&gt; commit 1d79c5a5d3fda6e8412bcf42c6fcf868f30eea8c
+#&gt; Author: Randy Lai &lt;randy.cs.lai@gmail.com&gt;
+#&gt; Date:   Sun May 3 23:55:34 2020 -0700
+#&gt; 
+#&gt;     second message
+#&gt; 
+#&gt; diff --git a/world.txt b/world.txt
+#&gt; new file mode 100644
+#&gt; index 0000000..cc628cc
+#&gt; --- /dev/null
+#&gt; +++ b/world.txt
+#&gt; @@ -0,0 +1 @@
+#&gt; +world</div><div class='input'># }
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,7 +232,7 @@ stderr is not empty</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
