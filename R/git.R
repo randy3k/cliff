@@ -23,9 +23,7 @@ get_git_path  <- function() {
 #' @param ... the arguments pass to git command, supports the
 #'     [big bang](https://rlang.r-lib.org/reference/nse-force.html) operator `!!!`
 #' @param input text pass to stdin
-#' @param working_dir working directory
-#' @param throw_on_stderr throw an error if git command executed successfully but
-#'     stderr is not empty
+#' @param wd working directory
 #' @param env additional environment variable pass to git
 #' @param just_the_proc return the underlying process object instead of the output
 #' @return The output in a scalar character. It may contain a trailing newline. Use `as.character()`
@@ -44,7 +42,6 @@ get_git_path  <- function() {
 #' git("init")
 #' git("config", "--local", "user.email", "you@example.com")
 #' git("config", "--local", "user.name", "Your Name")
-#'
 #'
 #' cat("hello\n", file = "hello.txt")
 #'
@@ -72,10 +69,10 @@ get_git_path  <- function() {
 git <- function(
         ...,
         input = NULL,
-        working_dir = NULL,
-        throw_on_stderr = FALSE,
+        wd = NULL,
         env = NULL,
         just_the_proc = FALSE) {
+
     on.exit({
         try(p$kill(), silent = TRUE)
     })
@@ -84,7 +81,14 @@ git <- function(
     git_path <- get_git_path()
     args <- vapply(rlang::list2(...), function(x) as.character(x), character(1))
     p <- processx::process$new(
-        git_path, args, stdin = "|", stdout = "|", stderr = "|", env = env, wd = working_dir)
+        git_path,
+        args,
+        stdin = "|",
+        stdout = "|",
+        stderr = "|",
+        env = env,
+        wd = wd,
+        windows_hide_window = TRUE)
     if (!is.null(input)) {
         r <- p$write_input(input)
         while (is.raw(r) && length(r) > 0) {
@@ -107,11 +111,6 @@ git <- function(
         }
     }
 
-    if (nzchar(err) > 0) {
-        if (throw_on_stderr) {
-            stop(paste0(out, err))
-        }
-    }
     structure(out, class = "git_output", err = err)
 }
 

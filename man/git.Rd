@@ -4,14 +4,7 @@
 \alias{git}
 \title{Running a Git Command}
 \usage{
-git(
-  ...,
-  input = NULL,
-  working_dir = NULL,
-  throw_on_stderr = FALSE,
-  env = NULL,
-  just_the_proc = FALSE
-)
+git(..., input = NULL, wd = NULL, env = NULL, just_the_proc = FALSE)
 }
 \arguments{
 \item{...}{the arguments pass to git command, supports the
@@ -19,10 +12,7 @@ git(
 
 \item{input}{text pass to stdin}
 
-\item{working_dir}{working directory}
-
-\item{throw_on_stderr}{throw an error if git command executed successfully but
-stderr is not empty}
+\item{wd}{working directory}
 
 \item{env}{additional environment variable pass to git}
 
@@ -49,7 +39,6 @@ setwd(td)
 git("init")
 git("config", "--local", "user.email", "you@example.com")
 git("config", "--local", "user.name", "Your Name")
-
 
 cat("hello\n", file = "hello.txt")
 
