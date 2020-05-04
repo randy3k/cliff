@@ -41,6 +41,9 @@ get_git_path  <- function() {
 #' setwd(td)
 #'
 #' git("init")
+#' git("config", "--local", "user.email", "you@example.com")
+#' git("config", "--local", "user.name", "Your Name")
+#'
 #'
 #' cat("hello\n", file = "hello.txt")
 #'
