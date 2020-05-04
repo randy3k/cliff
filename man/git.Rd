@@ -42,7 +42,6 @@ specify with \code{options(git_path = "/path/to/git")}.
 \examples{
 \donttest{
 cwd <- getwd()
-on.exit(setwd(cwd))
 td <- file.path(tempdir(), "git-examples")
 dir.create(td, showWarnings = FALSE)
 setwd(td)
@@ -71,6 +70,8 @@ git("commit", "-F", "-", input = "second message")
 (sha <- git("rev-parse", "HEAD"))
 
 git("show", sha)
+
+setwd(cwd)
 }
 
 }
