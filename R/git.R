@@ -36,6 +36,8 @@ get_git_path  <- function() {
 #'
 #' @examples
 #' \donttest{
+#' cwd <- getwd()
+#' on.exit(setwd(cwd))
 #' td <- file.path(tempdir(), "git-examples")
 #' dir.create(td, showWarnings = FALSE)
 #' setwd(td)
