@@ -29,15 +29,15 @@ stderr is not empty}
 \item{just_the_proc}{return the underlying process object instead of the output}
 }
 \value{
-a scalar character that may contains a trailing newline. Use \code{as.character()}
+The output in a scalar character. It may contain a trailing newline. Use \code{as.character()}
 to ensure the trailing newline is trimmed.
 }
 \description{
 Running a Git Command
 }
 \details{
-If \code{git()} fails to locate the git binary automatically, the path to it could be
-specify in \code{options(git_path = "/path/to/git")}.
+If \code{git()} fails to locate the git binary automatically, the path could be
+specify with \code{options(git_path = "/path/to/git")}.
 }
 \examples{
 \donttest{

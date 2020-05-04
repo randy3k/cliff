@@ -28,11 +28,11 @@ get_git_path  <- function() {
 #'     stderr is not empty
 #' @param env additional environment variable pass to git
 #' @param just_the_proc return the underlying process object instead of the output
-#' @return a scalar character that may contains a trailing newline. Use `as.character()`
+#' @return The output in a scalar character. It may contain a trailing newline. Use `as.character()`
 #'     to ensure the trailing newline is trimmed.
 #' @details
-#' If `git()` fails to locate the git binary automatically, the path to it could be
-#' specify in `options(git_path = "/path/to/git")`.
+#' If `git()` fails to locate the git binary automatically, the path could be
+#' specify with `options(git_path = "/path/to/git")`.
 #'
 #' @examples
 #' \donttest{
