@@ -1,7 +1,18 @@
 get_git_path  <- function() {
     path <- getOption("git_path", Sys.which("git"))
+    if (is.null(path) && .Platform$OS.type == "windows") {
+        paths <- c(
+            "C:\\Program Files\\Git\\bin\\git.exe",
+            "C:\\Program Files (x86)\\Git\\bin\\git.exe"
+        )
+        for (p in paths) {
+            if (file.exists(p)) {
+                return(p)
+            }
+        }
+    }
     if (is.null(path) || !nzchar(path)) {
-        path <- "git"
+        stop("cannot find 'git' binary", call. = FALSE)
     }
     path
 }
@@ -59,12 +70,12 @@ git <- function(
             stop(paste0(out, err))
         }
     }
-    structure(out, class = "git_result", err = err)
+    structure(out, class = "git_output", err = err)
 }
 
 #' @export
-#' @method print git_result
-print.git_result <- function(x, ...) {
+#' @method print git_output
+print.git_output <- function(x, ...) {
     if (nzchar(x)) {
         cat(x)
     }
@@ -76,8 +87,8 @@ print.git_result <- function(x, ...) {
 
 
 #' @export
-#' @method as.character git_result
-as.character.git_result <- function(x, trim = TRUE, ...) {
+#' @method as.character git_output
+as.character.git_output <- function(x, trim = TRUE, ...) {
     err <- attr(x, "err")
     out <- paste0(x, err)
     if (trim) {
