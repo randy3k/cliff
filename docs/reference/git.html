@@ -147,6 +147,10 @@
       <td><p>additional environment variable pass to git</p></td>
     </tr>
     <tr>
+      <th>timeout</th>
+      <td><p>throw an error after this amount of time in second</p></td>
+    </tr>
+    <tr>
       <th>want_process</th>
       <td><p>return the underlying process object instead of the output</p></td>
     </tr>
@@ -155,7 +159,7 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The stdout of the process in a scalar character.
-It may contain a trailing newline. Use <code><a href='https://rdrr.io/r/base/character.html'>as.character()</a></code> to
+It may contain a trailing newline. Use <code><a href='https://rdrr.io/r/base/trimws.html'>trimws()</a></code> to
 ensure the trailing newline is trimmed.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -169,7 +173,7 @@ specify with <code><a href='https://rdrr.io/r/base/options.html'>options(git_pat
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>td</span>, <span class='kw'>showWarnings</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>td</span>)
 
-<span class='fu'>git</span>(<span class='st'>"init"</span>)</div><div class='output co'>#&gt; Initialized empty Git repository in /private/var/folders/nz/8ncdbh01445fkwtvzj_71y8c0000gn/T/RtmpYw3wer/git-examples/.git/</div><div class='input'><span class='fu'>git</span>(<span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.email"</span>, <span class='st'>"you@example.com"</span>)
+<span class='fu'>git</span>(<span class='st'>"init"</span>)</div><div class='output co'>#&gt; Initialized empty Git repository in /private/var/folders/nz/8ncdbh01445fkwtvzj_71y8c0000gn/T/Rtmp88HJdh/git-examples/.git/</div><div class='input'><span class='fu'>git</span>(<span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.email"</span>, <span class='st'>"you@example.com"</span>)
 <span class='fu'>git</span>(<span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.name"</span>, <span class='st'>"Your Name"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"hello\n"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"hello.txt"</span>)
@@ -185,25 +189,25 @@ specify with <code><a href='https://rdrr.io/r/base/options.html'>options(git_pat
 #&gt; nothing added to commit but untracked files present (use "git add" to track)</div><div class='input'>
 <span class='fu'>git</span>(<span class='st'>"add"</span>, <span class='st'>"hello.txt"</span>)
 
-<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-m"</span>, <span class='st'>"initial message"</span>)</div><div class='output co'>#&gt; [master (root-commit) 7797855] initial message
+<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-m"</span>, <span class='st'>"initial message"</span>)</div><div class='output co'>#&gt; [master (root-commit) e5cd719] initial message
 #&gt;  1 file changed, 1 insertion(+)
 #&gt;  create mode 100644 hello.txt</div><div class='input'>
-<span class='fu'>git</span>(<span class='st'>"log"</span>)</div><div class='output co'>#&gt; commit 77978558e63b87dcba911425361426bed74885cd
+<span class='fu'>git</span>(<span class='st'>"log"</span>)</div><div class='output co'>#&gt; commit e5cd71944a9ad586c88931bad23034b2555669b0
 #&gt; Author: Your Name &lt;you@example.com&gt;
-#&gt; Date:   Mon May 4 21:38:58 2020 -0700
+#&gt; Date:   Mon May 4 21:45:59 2020 -0700
 #&gt; 
 #&gt;     initial message</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"world\n"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"world.txt"</span>)
 
 <span class='fu'>git</span>(<span class='st'>"add"</span>, <span class='st'>"world.txt"</span>)
 
-<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-F"</span>, <span class='st'>"-"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"second message"</span>)</div><div class='output co'>#&gt; [master eb7e280] second message
+<span class='fu'>git</span>(<span class='st'>"commit"</span>, <span class='st'>"-F"</span>, <span class='st'>"-"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"second message"</span>)</div><div class='output co'>#&gt; [master eefa556] second message
 #&gt;  1 file changed, 1 insertion(+)
 #&gt;  create mode 100644 world.txt</div><div class='input'>
-(<span class='no'>sha</span> <span class='kw'>&lt;-</span> <span class='fu'>git</span>(<span class='st'>"rev-parse"</span>, <span class='st'>"HEAD"</span>))</div><div class='output co'>#&gt; eb7e280fdce046632c1ee875b15433f653a76423</div><div class='input'>
-<span class='fu'>git</span>(<span class='st'>"show"</span>, <span class='no'>sha</span>)</div><div class='output co'>#&gt; commit eb7e280fdce046632c1ee875b15433f653a76423
+(<span class='no'>sha</span> <span class='kw'>&lt;-</span> <span class='fu'>git</span>(<span class='st'>"rev-parse"</span>, <span class='st'>"HEAD"</span>))</div><div class='output co'>#&gt; eefa556e74c0f6d047f3a95633dfb6bb672e8239</div><div class='input'>
+<span class='fu'>git</span>(<span class='st'>"show"</span>, <span class='no'>sha</span>)</div><div class='output co'>#&gt; commit eefa556e74c0f6d047f3a95633dfb6bb672e8239
 #&gt; Author: Your Name &lt;you@example.com&gt;
-#&gt; Date:   Mon May 4 21:38:59 2020 -0700
+#&gt; Date:   Mon May 4 21:45:59 2020 -0700
 #&gt; 
 #&gt;     second message
 #&gt; 

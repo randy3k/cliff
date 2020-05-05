@@ -26,9 +26,10 @@ get_git_path  <- function() {
 #' @param input text pass to stdin
 #' @param wd working directory
 #' @param env additional environment variable pass to git
+#' @param timeout throw an error after this amount of time in second
 #' @param want_process return the underlying process object instead of the output
 #' @return The stdout of the process in a scalar character.
-#' It may contain a trailing newline. Use `as.character()` to
+#' It may contain a trailing newline. Use `trimws()` to
 #' ensure the trailing newline is trimmed.
 #' @details
 #' If `git()` fails to locate the git binary automatically, the path could be
@@ -84,7 +85,11 @@ git <- function(
 
     ellipsis::check_dots_unnamed()
     git_path <- get_git_path()
-    args <- vapply(list2(...), function(x) as.character(x), character(1))
+    args <- vapply(
+        list2(...),
+        function(x) if (inherits(x, "git_raw_output")) trimws(x)
+            else as.character(x),
+        character(1))
     p <- processx::process$new(
         git_path,
         args,
@@ -186,15 +191,4 @@ print.git_raw_output <- function(x, with_stderr = FALSE, ...) {
         cat(x)
     }
     invisible(x)
-}
-
-
-#' @export
-#' @method as.character git_raw_output
-as.character.git_raw_output <- function(x, trim = TRUE, ...) {
-    out <- x
-    if (trim) {
-        out <- trimws(out)
-    }
-    out
 }

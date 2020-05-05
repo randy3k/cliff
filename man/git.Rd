@@ -23,11 +23,13 @@ git(
 
 \item{env}{additional environment variable pass to git}
 
+\item{timeout}{throw an error after this amount of time in second}
+
 \item{want_process}{return the underlying process object instead of the output}
 }
 \value{
 The stdout of the process in a scalar character.
-It may contain a trailing newline. Use \code{as.character()} to
+It may contain a trailing newline. Use \code{trimws()} to
 ensure the trailing newline is trimmed.
 }
 \description{
