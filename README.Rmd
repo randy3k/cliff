@@ -45,5 +45,5 @@ library(git)
 
 git("status")
 
-git("log", "--graph", "--oneline")
+git("log", "--graph", "--oneline", "-n5")
 ```

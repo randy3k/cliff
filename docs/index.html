@@ -78,7 +78,7 @@
 <!-- badges: start -->
 
 <p>Documentation: <a href="https://randy3k.github.io/git">http://randy3k.github.io/git</a></p>
-<p>While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library, they do not provide all functionalities that the git command line offers. This simple wrapper of the git command line exposes the git command line to the R interface and allows R users to invoke git commands directly from R. One will find this package useful if they need to perform complicated git operations locally.</p>
+<p>While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library, they do not cover all functionalities that the git command line offers. This simple wrapper of the git command line exposes the git command line to R and allows users to invoke git commands directly from R. Readers should keep in mind that there are performance tradeoffs to use the wrapped command line instead of using directly the efficient ‘libgit2’ library. In addition, user authentication cannot not handled seamlessly. In most situations, this should be only considered if ‘git2r’ or ‘gert’ do not satisfy the needs.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -98,15 +98,16 @@
 <span class="co">#&gt;   (use "git add &lt;file&gt;..." to update what will be committed)</span>
 <span class="co">#&gt;   (use "git restore &lt;file&gt;..." to discard changes in working directory)</span>
 <span class="co">#&gt;  modified:   README.Rmd</span>
+<span class="co">#&gt;  modified:   README.md</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; no changes added to commit (use "git add" and/or "git commit -a")</span>
 
-<span class="fu"><a href="reference/git.html">git</a></span>(<span class="st">"log"</span>, <span class="st">"--graph"</span>, <span class="st">"--oneline"</span>)
-<span class="co">#&gt; * db76ce0 fix badge link</span>
-<span class="co">#&gt; * 9b1a848 use single quotes</span>
-<span class="co">#&gt; * 798df8c update README</span>
-<span class="co">#&gt; * a5c6d58 update</span>
-<span class="co">#&gt; * 0d9ac61 init</span></pre></div>
+<span class="fu"><a href="reference/git.html">git</a></span>(<span class="st">"log"</span>, <span class="st">"--graph"</span>, <span class="st">"--oneline"</span>, <span class="st">"-n5"</span>)
+<span class="co">#&gt; * 42ae287 update</span>
+<span class="co">#&gt; * a869c4b update docs</span>
+<span class="co">#&gt; * ba7e0a7 use dontrun instead</span>
+<span class="co">#&gt; * 523f70d reset wd</span>
+<span class="co">#&gt; * 68173cb update docs</span></pre></div>
 </div>
 </div>
   </div>

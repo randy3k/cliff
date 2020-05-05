@@ -13,10 +13,12 @@
 Documentation: [http://randy3k.github.io/git](https://randy3k.github.io/git)
 
 While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library,
-they do not provide all functionalities that the git command line offers. This simple
-wrapper of the git command line exposes the git command line to the R interface and
-allows R users to invoke git commands directly from R. One will find this package useful
-if they need to perform complicated git operations locally.
+they do not cover all functionalities that the git command line offers. This simple
+wrapper of the git command line exposes the git command line to R and allows users to
+invoke git commands directly from R. Readers should keep in mind that
+there are performance tradeoffs to use the wrapped command line instead of using directly
+the efficient ‘libgit2’ library. In addition, user authentication cannot not handled seamlessly.
+In most situations, this should be only considered if ‘git2r’ or ‘gert’ do not satisfy the needs.
 
 ## Installation
 
@@ -39,13 +41,14 @@ git("status")
 #>   (use "git add <file>..." to update what will be committed)
 #>   (use "git restore <file>..." to discard changes in working directory)
 #>  modified:   README.Rmd
+#>  modified:   README.md
 #> 
 #> no changes added to commit (use "git add" and/or "git commit -a")
 
-git("log", "--graph", "--oneline")
-#> * db76ce0 fix badge link
-#> * 9b1a848 use single quotes
-#> * 798df8c update README
-#> * a5c6d58 update
-#> * 0d9ac61 init
+git("log", "--graph", "--oneline", "-n5")
+#> * 42ae287 update
+#> * a869c4b update docs
+#> * ba7e0a7 use dontrun instead
+#> * 523f70d reset wd
+#> * 68173cb update docs
 ```
