@@ -12,22 +12,24 @@ get_git_path  <- function() {
         }
     }
     if (is.null(path) || !nzchar(path)) {
-        stop("cannot find 'git' binary", call. = FALSE)
+        abort("cannot find 'git' binary")
     }
     path
 }
 
 
 #' Running a Git Command
+#' @import rlang
 #' @export
 #' @param ... the arguments pass to git command, supports the
 #'     [big bang](https://rlang.r-lib.org/reference/nse-force.html) operator `!!!`
 #' @param input text pass to stdin
 #' @param wd working directory
 #' @param env additional environment variable pass to git
-#' @param just_the_proc return the underlying process object instead of the output
-#' @return The output in a scalar character. It may contain a trailing newline. Use `as.character()`
-#'     to ensure the trailing newline is trimmed.
+#' @param want_process return the underlying process object instead of the output
+#' @return The stdout of the process in a scalar character.
+#' It may contain a trailing newline. Use `as.character()` to
+#' ensure the trailing newline is trimmed.
 #' @details
 #' If `git()` fails to locate the git binary automatically, the path could be
 #' specify with `options(git_path = "/path/to/git")`.
@@ -71,15 +73,18 @@ git <- function(
         input = NULL,
         wd = NULL,
         env = NULL,
-        just_the_proc = FALSE) {
+        timeout = Inf,
+        want_process = FALSE) {
 
-    on.exit({
-        try(p$kill(), silent = TRUE)
-    })
+    if (!want_process) {
+        on.exit({
+            try(p$kill(), silent = TRUE)
+        })
+    }
 
     ellipsis::check_dots_unnamed()
     git_path <- get_git_path()
-    args <- vapply(rlang::list2(...), function(x) as.character(x), character(1))
+    args <- vapply(list2(...), function(x) as.character(x), character(1))
     p <- processx::process$new(
         git_path,
         args,
@@ -96,42 +101,98 @@ git <- function(
         }
         close(p$get_input_connection())
     }
-    if (just_the_proc) {
+    if (want_process) {
         return(p)
     }
-    p$wait()
-    out <- p$read_all_output()
-    err <- p$read_all_error()
+    res <- tryCatch(
+            fetch_result(p, timeout),
+            interrupt = function(e) {
+                try(p$kill(), silent = TRUE)
+                invokeRestart("abort")
+            }
+        )
+    out <- res$out
+    err <- res$err
 
-    if (!identical(p$get_exit_status(), 0L)) {
-        if (nzchar(out) > 0 || nzchar(err) > 0) {
-            stop(paste0(out, err), call. = FALSE)
-        } else{
-            stop("git command returns with status ", p$get_exit_status(), call. = FALSE)
+    if (res$timeout_happend) {
+        cnd <- error_cnd(
+            c("git_timeout_error", "git_error"),
+            stdout = out, stderr = err, message = "git timeout exceeded")
+        cnd_signal(cnd)
+    } else if (!identical(p$get_exit_status(), 0L)) {
+        message <- sprintf("git terminated with code %i", p$get_exit_status())
+        if (nzchar(err) > 0) {
+            message <- paste0(message, "\n", silver("Got the following in stderr:"), "\n", red(err))
+        } else if (nzchar(out) > 0) {
+            message <- paste0(message, "\n", silver("Got the following in stdout:"), "\n", out)
         }
+        cnd <- error_cnd("git_error", stdout = out, stderr = err, message = message)
+        cnd_signal(cnd)
     }
 
-    structure(out, class = "git_output", err = err)
+    structure(out, class = "git_raw_output", err = err)
 }
 
-#' @export
-#' @method print git_output
-print.git_output <- function(x, ...) {
-    if (nzchar(x)) {
-        cat(x)
+
+fetch_result <- function(proc, timeout) {
+    out <- ""
+    err <- ""
+
+    start_time <- Sys.time()
+    timeout_happend <- FALSE
+    while (proc$is_alive()) {
+        remaining <- start_time + timeout - Sys.time()
+        if (remaining < 0) {
+            if (proc$kill(close_connections = FALSE)) {
+                timeout_happend <- TRUE
+            }
+            break
+        }
+        if (timeout < Inf) {
+            remaining <- as.integer(as.numeric(remaining) * 1000)
+        } else {
+            remaining <- 200
+        }
+        proc$poll_io(remaining)
+        out <- paste0(out, proc$read_output(2000))
+        err <- paste0(err, proc$read_error(2000))
     }
+    # make sure the process is done
+    if (!timeout_happend) {
+        proc$wait()
+    }
+    while (proc$is_incomplete_output() ||
+           (proc$has_error_connection() && proc$is_incomplete_error())) {
+        proc$poll_io(-1)
+        out <- paste0(out, proc$read_output(2000))
+        err <- paste0(err, proc$read_error(2000))
+    }
+
+    list(out = out, err = err, timeout_happend = timeout_happend)
+}
+
+
+#' @export
+#' @method print git_raw_output
+print.git_raw_output <- function(x, with_stderr = FALSE, ...) {
     err <- attr(x, "err")
+    show_section <- nzchar(err) && nzchar(x)
     if (nzchar(err)) {
+        cat(silver("Got the following in stderr:\n"))
         cat(err, file = stderr())
     }
+    if (nzchar(x)) {
+        if (show_section) cat(silver("Got the following in stdout:\n"))
+        cat(x)
+    }
+    invisible(x)
 }
 
 
 #' @export
-#' @method as.character git_output
-as.character.git_output <- function(x, trim = TRUE, ...) {
-    err <- attr(x, "err")
-    out <- paste0(x, err)
+#' @method as.character git_raw_output
+as.character.git_raw_output <- function(x, trim = TRUE, ...) {
+    out <- x
     if (trim) {
         out <- trimws(out)
     }

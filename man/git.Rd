@@ -4,7 +4,14 @@
 \alias{git}
 \title{Running a Git Command}
 \usage{
-git(..., input = NULL, wd = NULL, env = NULL, just_the_proc = FALSE)
+git(
+  ...,
+  input = NULL,
+  wd = NULL,
+  env = NULL,
+  timeout = Inf,
+  want_process = FALSE
+)
 }
 \arguments{
 \item{...}{the arguments pass to git command, supports the
@@ -16,11 +23,12 @@ git(..., input = NULL, wd = NULL, env = NULL, just_the_proc = FALSE)
 
 \item{env}{additional environment variable pass to git}
 
-\item{just_the_proc}{return the underlying process object instead of the output}
+\item{want_process}{return the underlying process object instead of the output}
 }
 \value{
-The output in a scalar character. It may contain a trailing newline. Use \code{as.character()}
-to ensure the trailing newline is trimmed.
+The stdout of the process in a scalar character.
+It may contain a trailing newline. Use \code{as.character()} to
+ensure the trailing newline is trimmed.
 }
 \description{
 Running a Git Command
