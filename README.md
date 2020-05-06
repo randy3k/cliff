@@ -28,6 +28,13 @@ You can install the released version of git from [CRAN](https://CRAN.R-project.o
 install.packages("git")
 ```
 
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("randy3k/git")
+```
+
 ## Example
 
 ``` r
@@ -41,14 +48,13 @@ git("status")
 #>   (use "git add <file>..." to update what will be committed)
 #>   (use "git restore <file>..." to discard changes in working directory)
 #>  modified:   README.Rmd
-#>  modified:   README.md
 #> 
 #> no changes added to commit (use "git add" and/or "git commit -a")
 
 git("log", "--graph", "--oneline", "-n5")
+#> * f4cacd0 fix doc errors
+#> * 66c6817 udpate README
 #> * 42ae287 update
 #> * a869c4b update docs
 #> * ba7e0a7 use dontrun instead
-#> * 523f70d reset wd
-#> * 68173cb update docs
 ```

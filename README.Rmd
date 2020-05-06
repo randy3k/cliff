@@ -38,6 +38,12 @@ You can install the released version of git from [CRAN](https://CRAN.R-project.o
 install.packages("git")
 ```
 
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("randy3k/git")
+```
 ## Example
 
 ```{r example}
