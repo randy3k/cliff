@@ -14,8 +14,8 @@ Description: While 'git2r' and 'gert' provide excellent bindings to the 'libgit2
     the efficient 'libgit2' library. In addition, user authentication cannot not handled seamlessly.
     In most situations, this should be only considered if 'git2r' or 'gert' do not satisfy the needs.
 License: MIT + file LICENSE
-URL: https://github.com/randy3k/git
-BugReports: https://github.com/randy3k/git/issues
+URL: https://github.com/RTagBot/git
+BugReports: https://github.com/RTagBot/git/issues
 Suggests: 
     crayon,
     testthat
