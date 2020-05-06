@@ -20,11 +20,14 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/randy3k/git/workflows/R-CMD-check/badge.svg)](https://github.com/randy3k/git/actions)
 [![codecov](https://codecov.io/gh/randy3k/git/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/git)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
 <!-- badges: end -->
 
-Documentation: [http://randy3k.github.io/git](https://randy3k.github.io/git)
+
+Github: [https://github.com/randy3k/git](https://github.com/randy3k/git)
+
+Documentation: [https://randy3k.github.io/git](https://randy3k.github.io/git)
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 cat(d[colnames(d) == "Description"])

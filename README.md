@@ -6,11 +6,13 @@
 
 [![R-CMD-check](https://github.com/randy3k/git/workflows/R-CMD-check/badge.svg)](https://github.com/randy3k/git/actions)
 [![codecov](https://codecov.io/gh/randy3k/git/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/git)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
 <!-- badges: end -->
 
-Documentation: [http://randy3k.github.io/git](https://randy3k.github.io/git)
+Github: <https://github.com/randy3k/git>
+
+Documentation: <https://randy3k.github.io/git>
 
 While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library,
 they do not cover all functionalities that the git command line offers. This simple
@@ -44,17 +46,12 @@ git("status")
 #> On branch master
 #> Your branch is up to date with 'origin/master'.
 #> 
-#> Changes not staged for commit:
-#>   (use "git add <file>..." to update what will be committed)
-#>   (use "git restore <file>..." to discard changes in working directory)
-#>  modified:   README.Rmd
-#> 
-#> no changes added to commit (use "git add" and/or "git commit -a")
+#> nothing to commit, working tree clean
 
 git("log", "--graph", "--oneline", "-n5")
+#> * b922c3e update docs
+#> * 1c974d7 add dev installation note
 #> * f4cacd0 fix doc errors
 #> * 66c6817 udpate README
 #> * 42ae287 update
-#> * a869c4b update docs
-#> * ba7e0a7 use dontrun instead
 ```
