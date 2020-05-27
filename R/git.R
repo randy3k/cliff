@@ -85,10 +85,16 @@ git <- function(
 
     ellipsis::check_dots_unnamed()
     git_path <- get_git_path()
+    args <- list2(...)
+    for (i in seq_along(args)) {
+        a <- args[[i]]
+        if (!is.character(a) || !nzchar(a)) {
+            stop("argument ", i, " is not a valid character")
+        }
+    }
     args <- vapply(
-        list2(...),
-        function(x) if (inherits(x, "git_raw_output")) trimws(x)
-            else as.character(x),
+        args,
+        function(x) if (inherits(x, "git_raw_output")) trimws(x) else x,
         character(1))
     p <- processx::process$new(
         git_path,
