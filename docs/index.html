@@ -25,6 +25,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,19 +46,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RTagBot/git/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -74,51 +70,49 @@
   <div class="contents col-md-9">
 <div id="a-simple-wrapper-for-git-command-line" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#a-simple-wrapper-for-git-command-line" class="anchor"></a>A Simple Wrapper for Git Command Line</h1></div>
+<a href="#a-simple-wrapper-for-git-command-line" class="anchor" aria-hidden="true"></a>A Simple Wrapper for Git Command Line</h1></div>
 <!-- badges: start -->
 
-<p>Github: <a href="https://github.com/RTagBot/git" class="uri">https://github.com/RTagBot/git</a></p>
-<p>Documentation: <a href="https://rtagbot.github.io/git" class="uri">https://rtagbot.github.io/git</a></p>
+<p>Github: <a href="https://github.com/RTagBot/git" class="external-link uri">https://github.com/RTagBot/git</a></p>
+<p>Documentation: <a href="https://rtagbot.github.io/git" class="external-link uri">https://rtagbot.github.io/git</a></p>
 <p>While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library, they do not cover all functionalities that the git command line offers. This simple wrapper of the git command line exposes the git command line to R and allows users to invoke git commands directly from R. Readers should keep in mind that there are performance tradeoffs to use the wrapped command line instead of using directly the efficient ‘libgit2’ library. In addition, user authentication cannot not handled seamlessly. In most situations, this should be only considered if ‘git2r’ or ‘gert’ do not satisfy the needs.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of git from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"git"</span>)</pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"rtagbot/git"</span>)</pre></div>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<p>You can install the released version of git from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"git"</span><span class="op">)</span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rtagbot/git"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">git</span>)
+<a href="#example" class="anchor" aria-hidden="true"></a>Example</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RTagBot/git" class="external-link">git</a></span><span class="op">)</span>
 
-<span class="fu"><a href="reference/git.html">git</a></span>(<span class="st">"status"</span>)
-<span class="co">#&gt; On branch master</span>
-<span class="co">#&gt; Your branch is up to date with 'origin/master'.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Changes not staged for commit:</span>
-<span class="co">#&gt;   (use "git add &lt;file&gt;..." to update what will be committed)</span>
-<span class="co">#&gt;   (use "git restore &lt;file&gt;..." to discard changes in working directory)</span>
-<span class="co">#&gt;  modified:   DESCRIPTION</span>
-<span class="co">#&gt;  modified:   README.Rmd</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; no changes added to commit (use "git add" and/or "git commit -a")</span>
-
-<span class="fu"><a href="reference/git.html">git</a></span>(<span class="st">"log"</span>, <span class="st">"--graph"</span>, <span class="st">"--oneline"</span>, <span class="st">"-n5"</span>)
-<span class="co">#&gt; * 23e497a use rtagbot</span>
-<span class="co">#&gt; * 2f3169d update docs</span>
-<span class="co">#&gt; * 1c974d7 add dev installation note</span>
-<span class="co">#&gt; * f4cacd0 fix doc errors</span>
-<span class="co">#&gt; * 66c6817 udpate README</span></pre></div>
+<span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"status"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## On branch master</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Your branch is ahead of 'origin/master' by 1 commit.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   (use "git push" to publish your local commits)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## nothing to commit, working tree clean</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"log"</span>, <span class="st">"--graph"</span>, <span class="st">"--oneline"</span>, <span class="st">"-n5"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## * a30bbc2 update docs</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## * cd71e61 better argument validation</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## * 1f9cc00 use rtagbot</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## * 2f3169d update docs</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## * 1c974d7 add dev installation note</span></span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/RTagBot/git/">https://​github.com/​RTagBot/​git/​</a>
 </li>
@@ -126,39 +120,45 @@
 </li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Randy Lai <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rtagbot/git/actions"><img src="https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/rtagbot/git"><img src="https://codecov.io/gh/rtagbot/git/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=git"><img src="https://www.r-pkg.org/badges/version/git" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://cran.r-project.org/package=git"><img src="https://cranlogs.r-pkg.org/badges/grand-total/git"></a></li>
+<li><a href="https://github.com/rtagbot/git/actions" class="external-link"><img src="https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/rtagbot/git" class="external-link"><img src="https://codecov.io/gh/rtagbot/git/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=git" class="external-link"><img src="https://www.r-pkg.org/badges/version/git" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://cran.r-project.org/package=git" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/git"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Randy Lai.</p>
+  <p></p>
+<p>Developed by Randy Lai.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -166,6 +166,8 @@
 
   
 
+
+  
 
   </body>
 </html>

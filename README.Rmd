@@ -1,8 +1,5 @@
 ---
-output:
-  reprex::reprex_document:
-    advertise: false
-    html_preview: false
+output: github_document   
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
