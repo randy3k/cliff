@@ -1,3 +1,5 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+test_that("git status works", {
+  wd <- local_temp_git_repo()
+  result <- git("status", wd = wd)
+  expect_true(grepl("No commits yet", result, fixed = TRUE))
 })
