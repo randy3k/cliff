@@ -50,17 +50,30 @@ git("status")
 ```
 
     ## On branch master
-    ## Your branch is ahead of 'origin/master' by 1 commit.
-    ##   (use "git push" to publish your local commits)
+    ## Your branch is up to date with 'origin/master'.
     ## 
-    ## nothing to commit, working tree clean
+    ## Changes not staged for commit:
+    ##   (use "git add <file>..." to update what will be committed)
+    ##   (use "git restore <file>..." to discard changes in working directory)
+    ##  modified:   docs/404.html
+    ##  modified:   docs/LICENSE-text.html
+    ##  modified:   docs/LICENSE.html
+    ##  modified:   docs/authors.html
+    ##  modified:   docs/index.html
+    ##  modified:   docs/pkgdown.css
+    ##  modified:   docs/pkgdown.js
+    ##  modified:   docs/pkgdown.yml
+    ##  modified:   docs/reference/git.html
+    ##  modified:   docs/reference/index.html
+    ## 
+    ## no changes added to commit (use "git add" and/or "git commit -a")
 
 ``` r
 git("log", "--graph", "--oneline", "-n5")
 ```
 
-    ## * a30bbc2 update docs
+    ## * 26ff855 upgrade Roxygen
+    ## * 264caa4 add test
+    ## * 2a2c270 udpate check.yaml
+    ## * 9935620 update docs
     ## * cd71e61 better argument validation
-    ## * 1f9cc00 use rtagbot
-    ## * 2f3169d update docs
-    ## * 1c974d7 add dev installation note

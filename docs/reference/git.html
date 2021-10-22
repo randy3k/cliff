@@ -45,8 +45,6 @@
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -58,15 +56,9 @@
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,6 +79,12 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -119,14 +117,14 @@
     <p>Running a Git Command</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>git</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>git</span><span class='op'>(</span>
   <span class='va'>...</span>,
   input <span class='op'>=</span> <span class='cn'>NULL</span>,
   wd <span class='op'>=</span> <span class='cn'>NULL</span>,
   env <span class='op'>=</span> <span class='cn'>NULL</span>,
   timeout <span class='op'>=</span> <span class='cn'>Inf</span>,
   want_process <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></code></pre></div>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,78 +164,71 @@ ensure the trailing newline is trimmed.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If <code>git()</code> fails to locate the git binary automatically, the path could be
-specify with <code>options(git_path = "/path/to/git")</code>.</p>
+specify with <code><a href='https://rdrr.io/r/base/options.html'>options(git_path = "/path/to/git")</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
-<span class='r-in'><span class='va'>cwd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>td</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"git-examples"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='va'>td</span>, showWarnings <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>td</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"init"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Initialized empty Git repository in /private/var/folders/w9/sklv856j2ks_783rft8mw56c00syhy/T/RtmpB0QdZ6/git-examples/.git/</span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.email"</span>, <span class='st'>"you@example.com"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.name"</span>, <span class='st'>"Your Name"</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"hello\n"</span>, file <span class='op'>=</span> <span class='st'>"hello.txt"</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"status"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> On branch main</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> No commits yet</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Untracked files:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   (use "git add &lt;file&gt;..." to include in what will be committed)</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 	hello.txt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> nothing added to commit but untracked files present (use "git add" to track)</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"hello.txt"</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"commit"</span>, <span class='st'>"-m"</span>, <span class='st'>"initial message"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [main (root-commit) eec7cfd] initial message</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  1 file changed, 1 insertion(+)</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  create mode 100644 hello.txt</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"log"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> commit eec7cfd7fd1b9d14e3390bcf40565303c66702ea</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Author: Your Name &lt;you@example.com&gt;</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Date:   Sat Jun 5 13:12:41 2021 -0700</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     initial message</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"world\n"</span>, file <span class='op'>=</span> <span class='st'>"world.txt"</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"world.txt"</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"commit"</span>, <span class='st'>"-F"</span>, <span class='st'>"-"</span>, input <span class='op'>=</span> <span class='st'>"second message"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [main f7b0be6] second message</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  1 file changed, 1 insertion(+)</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  create mode 100644 world.txt</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='op'>(</span><span class='va'>sha</span> <span class='op'>&lt;-</span> <span class='fu'>git</span><span class='op'>(</span><span class='st'>"rev-parse"</span>, <span class='st'>"HEAD"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> f7b0be6c9e5f39ec4da264bbb70948f1529fc646</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"show"</span>, <span class='va'>sha</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> commit f7b0be6c9e5f39ec4da264bbb70948f1529fc646</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Author: Your Name &lt;you@example.com&gt;</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Date:   Sat Jun 5 13:12:41 2021 -0700</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     second message</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> diff --git a/world.txt b/world.txt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> new file mode 100644</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> index 0000000..cc628cc</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> --- /dev/null</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> +++ b/world.txt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> @@ -0,0 +1 @@</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> +world</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>cwd</span><span class='op'>)</span></span>
-<span class='r-in'><span class='co'># }</span></span>
-<span class='r-in'></span>
-</code></pre></div>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='va'>cwd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>td</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"git-examples"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='va'>td</span>, showWarnings <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>td</span><span class='op'>)</span>
+
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"init"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Initialized empty Git repository in /private/var/folders/w9/sklv856j2ks_783rft8mw56c00syhy/T/RtmpFZSEXd/git-examples/.git/</div><div class='input'><span class='fu'>git</span><span class='op'>(</span><span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.email"</span>, <span class='st'>"you@example.com"</span><span class='op'>)</span>
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"config"</span>, <span class='st'>"--local"</span>, <span class='st'>"user.name"</span>, <span class='st'>"Your Name"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"hello\n"</span>, file <span class='op'>=</span> <span class='st'>"hello.txt"</span><span class='op'>)</span>
+
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"status"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; On branch main
+#&gt; 
+#&gt; No commits yet
+#&gt; 
+#&gt; Untracked files:
+#&gt;   (use "git add &lt;file&gt;..." to include in what will be committed)
+#&gt; 	hello.txt
+#&gt; 
+#&gt; nothing added to commit but untracked files present (use "git add" to track)</div><div class='input'>
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"hello.txt"</span><span class='op'>)</span>
+
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"commit"</span>, <span class='st'>"-m"</span>, <span class='st'>"initial message"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [main (root-commit) 260fb24] initial message
+#&gt;  1 file changed, 1 insertion(+)
+#&gt;  create mode 100644 hello.txt</div><div class='input'>
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"log"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; commit 260fb24de309d1af83ed19022e1a258f05ee5e4b
+#&gt; Author: Your Name &lt;you@example.com&gt;
+#&gt; Date:   Fri Oct 22 14:25:45 2021 -0700
+#&gt; 
+#&gt;     initial message</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"world\n"</span>, file <span class='op'>=</span> <span class='st'>"world.txt"</span><span class='op'>)</span>
+
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"world.txt"</span><span class='op'>)</span>
+
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"commit"</span>, <span class='st'>"-F"</span>, <span class='st'>"-"</span>, input <span class='op'>=</span> <span class='st'>"second message"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [main 289950c] second message
+#&gt;  1 file changed, 1 insertion(+)
+#&gt;  create mode 100644 world.txt</div><div class='input'>
+<span class='op'>(</span><span class='va'>sha</span> <span class='op'>&lt;-</span> <span class='fu'>git</span><span class='op'>(</span><span class='st'>"rev-parse"</span>, <span class='st'>"HEAD"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 289950c0953ee99244da560d4a5c7ef24d585cd5</div><div class='input'>
+<span class='fu'>git</span><span class='op'>(</span><span class='st'>"show"</span>, <span class='va'>sha</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; commit 289950c0953ee99244da560d4a5c7ef24d585cd5
+#&gt; Author: Your Name &lt;you@example.com&gt;
+#&gt; Date:   Fri Oct 22 14:25:46 2021 -0700
+#&gt; 
+#&gt;     second message
+#&gt; 
+#&gt; diff --git a/world.txt b/world.txt
+#&gt; new file mode 100644
+#&gt; index 0000000..cc628cc
+#&gt; --- /dev/null
+#&gt; +++ b/world.txt
+#&gt; @@ -0,0 +1 @@
+#&gt; +world</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>cwd</span><span class='op'>)</span>
+<span class='co'># }</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -249,11 +240,11 @@ specify with <code>options(git_path = "/path/to/git")</code>.</p>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Randy Lai.</p></p>
+  <p>Developed by Randy Lai.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -261,8 +252,6 @@ specify with <code>options(git_path = "/path/to/git")</code>.</p>
 
   
 
-
-  
 
   </body>
 </html>
