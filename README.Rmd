@@ -16,7 +16,6 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/git/actions)
-[![codecov](https://codecov.io/gh/rtagbot/git/branch/master/graph/badge.svg)](https://codecov.io/gh/rtagbot/git)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
 <!-- badges: end -->
@@ -24,7 +23,7 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 
 Github: [https://github.com/RTagBot/git](https://github.com/RTagBot/git)
 
-Documentation: [https://rtagbot.github.io/git](https://rtagbot.github.io/git)
+Documentation: [https://rtagbot.github.io/git](https://rtagbot.github.io/git/)
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 cat(d[colnames(d) == "Description"])
