@@ -5,15 +5,15 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/git/actions)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
+[![R-CMD-check](https://github.com/rtagbot/gitline/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/gitline/actions)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/gitline)](https://cran.r-project.org/package=gitline)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
 <!-- badges: end -->
 
-Github: <https://github.com/RTagBot/git>
+Github: <https://github.com/RTagBot/gitline>
 
 Documentation:
-[https://rtagbot.github.io/git](https://rtagbot.github.io/git/)
+[https://rtagbot.github.io/git](https://rtagbot.github.io/gitline/)
 
 While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’
 library, they do not cover all functionalities that the git command line
@@ -31,20 +31,20 @@ You can install the released version of git from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("git")
+install.packages("gitline")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rtagbot/git")
+devtools::install_github("rtagbot/gitline")
 ```
 
 ## Example
 
 ``` r
-library(git)
+library(gitline)
 
 git("status")
 ```
@@ -52,14 +52,16 @@ git("status")
     ## On branch master
     ## Your branch is up to date with 'origin/master'.
     ## 
-    ## nothing to commit, working tree clean
+    ## Changes to be committed:
+    ##   (use "git restore --staged <file>..." to unstage)
+    ##  modified:   README.Rmd
 
 ``` r
 git("log", "--graph", "--oneline", "-n5")
 ```
 
-    ## * 089b5bd fix cran complaints
+    ## * 8fbe515 rename package
+    ## * 8bdb3a0 fix cran complaints
     ## * 9ee0fd5 add ignore files
     ## * 03296f2 skip on cran
     ## * 519f5b6 update pkg site
-    ## * 26ff855 upgrade Roxygen

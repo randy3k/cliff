@@ -15,15 +15,15 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 ```
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/git/actions)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/git)](https://cran.r-project.org/package=git)
+[![R-CMD-check](https://github.com/rtagbot/gitline/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/gitline/actions)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/gitline)](https://cran.r-project.org/package=gitline)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
 <!-- badges: end -->
 
 
-Github: [https://github.com/RTagBot/git](https://github.com/RTagBot/git)
+Github: [https://github.com/RTagBot/gitline](https://github.com/RTagBot/gitline)
 
-Documentation: [https://rtagbot.github.io/git](https://rtagbot.github.io/git/)
+Documentation: [https://rtagbot.github.io/git](https://rtagbot.github.io/gitline/)
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 cat(d[colnames(d) == "Description"])
@@ -34,19 +34,19 @@ cat(d[colnames(d) == "Description"])
 You can install the released version of git from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("git")
+install.packages("gitline")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rtagbot/git")
+devtools::install_github("rtagbot/gitline")
 ```
 ## Example
 
 ```{r example}
-library(git)
+library(gitline)
 
 git("status")
 

@@ -1,22 +1,22 @@
-Package: git
+Package: gitline
 Title: A Simple Wrapper for Git Command Line
 Version: 0.1.0
-Authors@R: 
+Authors@R:
     person(given = "Randy",
            family = "Lai",
            role = c("aut", "cre", "cph"),
            email = "randy.cs.lai@gmail.com")
 Description: While 'git2r' and 'gert' provide excellent bindings to the 'libgit2' library,
     they do not cover all functionalities that the git command line offers. This simple
-    wrapper of the git command line exposes the git command line to R and allows users to 
+    wrapper of the git command line exposes the git command line to R and allows users to
     invoke git commands directly from R. Readers should keep in mind that
     there are performance trade-offs to use the wrapped command line instead of using directly
     the efficient 'libgit2' library. In addition, user authentication cannot not handled seamlessly.
     In most situations, this should be only considered if 'git2r' or 'gert' do not satisfy the needs.
 License: MIT + file LICENSE
-URL: https://github.com/RTagBot/git
-BugReports: https://github.com/RTagBot/git/issues
-Suggests: 
+URL: https://github.com/RTagBot/gitline
+BugReports: https://github.com/RTagBot/gitline/issues
+Suggests:
     withr,
     crayon,
     testthat
@@ -25,7 +25,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 SystemRequirements: git (>= 2.0.0)
-Imports: 
+Imports:
     ellipsis,
     processx,
     rlang

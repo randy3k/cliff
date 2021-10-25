@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Simple Wrapper for Git Command Line • git</title>
+<title>A Simple Wrapper for Git Command Line • gitline</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -14,9 +14,9 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="A Simple Wrapper for Git Command Line">
 <meta property="og:description" content="While git2r and gert provide excellent bindings to the libgit2 library,
     they do not cover all functionalities that the git command line offers. This simple
-    wrapper of the git command line exposes the git command line to R and allows users to 
+    wrapper of the git command line exposes the git command line to R and allows users to
     invoke git commands directly from R. Readers should keep in mind that
-    there are performance tradeoffs to use the wrapped command line instead of using directly
+    there are performance trade-offs to use the wrapped command line instead of using directly
     the efficient libgit2 library. In addition, user authentication cannot not handled seamlessly.
     In most situations, this should be only considered if git2r or gert do not satisfy the needs.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -36,7 +36,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">git</a>
+        <a class="navbar-link" href="index.html">gitline</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -55,7 +55,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RTagBot/git/">
+  <a href="https://github.com/RTagBot/gitline/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -77,19 +77,19 @@
 <a href="#a-simple-wrapper-for-git-command-line" class="anchor"></a>A Simple Wrapper for Git Command Line</h1></div>
 <!-- badges: start -->
 
-<p>Github: <a href="https://github.com/RTagBot/git" class="uri">https://github.com/RTagBot/git</a></p>
-<p>Documentation: <a href="https://rtagbot.github.io/git" class="uri">https://rtagbot.github.io/git</a></p>
-<p>While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library, they do not cover all functionalities that the git command line offers. This simple wrapper of the git command line exposes the git command line to R and allows users to invoke git commands directly from R. Readers should keep in mind that there are performance tradeoffs to use the wrapped command line instead of using directly the efficient ‘libgit2’ library. In addition, user authentication cannot not handled seamlessly. In most situations, this should be only considered if ‘git2r’ or ‘gert’ do not satisfy the needs.</p>
+<p>Github: <a href="https://github.com/RTagBot/gitline" class="uri">https://github.com/RTagBot/gitline</a></p>
+<p>Documentation: <a href="https://rtagbot.github.io/git/">https://rtagbot.github.io/git</a></p>
+<p>While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’ library, they do not cover all functionalities that the git command line offers. This simple wrapper of the git command line exposes the git command line to R and allows users to invoke git commands directly from R. Readers should keep in mind that there are performance trade-offs to use the wrapped command line instead of using directly the efficient ‘libgit2’ library. In addition, user authentication cannot not handled seamlessly. In most situations, this should be only considered if ‘git2r’ or ‘gert’ do not satisfy the needs.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of git from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"git"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gitline"</span><span class="op">)</span></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rtagbot/git"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rtagbot/gitline"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -102,27 +102,37 @@
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Your branch is up to date with 'origin/master'.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Changes not staged for commit:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   (use "git add &lt;file&gt;..." to update what will be committed)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   (use "git add/rm &lt;file&gt;..." to update what will be committed)</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   (use "git restore &lt;file&gt;..." to discard changes in working directory)</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/404.html</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/LICENSE-text.html</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/LICENSE.html</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/authors.html</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/index.html</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/pkgdown.css</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/pkgdown.js</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/pkgdown.yml</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/reference/git.html</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   docs/reference/index.html</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">## no changes added to commit (use "git add" and/or "git commit -a")</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   DESCRIPTION</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  modified:   README.Rmd</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/404.html</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/LICENSE-text.html</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/LICENSE.html</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/authors.html</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/bootstrap-toc.css</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/bootstrap-toc.js</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/docsearch.css</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/docsearch.js</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/index.html</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/link.svg</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/pkgdown.css</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/pkgdown.js</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/pkgdown.yml</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/reference/Rplot001.png</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/reference/git.html</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/reference/index.html</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    docs/sitemap.xml</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  deleted:    man/git.Rd</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="do">## no changes added to commit (use "git add" and/or "git commit -a")</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"log"</span>, <span class="st">"--graph"</span>, <span class="st">"--oneline"</span>, <span class="st">"-n5"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## * 26ff855 upgrade Roxygen</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## * 264caa4 add test</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## * 2a2c270 udpate check.yaml</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## * 9935620 update docs</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## * cd71e61 better argument validation</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## * 8bdb3a0 fix cran complaints</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## * 9ee0fd5 add ignore files</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## * 03296f2 skip on cran</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## * 519f5b6 update pkg site</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## * 26ff855 upgrade Roxygen</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -131,9 +141,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/RTagBot/git/">https://​github.com/​RTagBot/​git/​</a>
+<li>Browse source code at <br><a href="https://github.com/RTagBot/gitline/">https://​github.com/​RTagBot/​gitline/​</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/RTagBot/git/issues">https://​github.com/​RTagBot/​git/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/RTagBot/gitline/issues">https://​github.com/​RTagBot/​gitline/​issues</a>
 </li>
 </ul>
 </div>
@@ -154,9 +164,8 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rtagbot/git/actions"><img src="https://github.com/rtagbot/git/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/rtagbot/git"><img src="https://codecov.io/gh/rtagbot/git/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=git"><img src="https://www.r-pkg.org/badges/version/git" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://github.com/rtagbot/gitline/actions"><img src="https://github.com/rtagbot/gitline/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://cran.r-project.org/package=gitline"><img src="https://www.r-pkg.org/badges/version/gitline" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://cran.r-project.org/package=git"><img src="https://cranlogs.r-pkg.org/badges/grand-total/git"></a></li>
 </ul>
 </div>
