@@ -1,4 +1,4 @@
 library(testthat)
-library(gitline)
+library(cliff)
 
-test_check("gitline")
+test_check("cliff")
