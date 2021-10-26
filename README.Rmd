@@ -15,15 +15,15 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 ```
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rtagbot/gitline/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/gitline/actions)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/gitline)](https://cran.r-project.org/package=gitline)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
+[![R-CMD-check](https://github.com/rtagbot/cliff/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/cliff/actions)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->
 
 
-Github: [https://github.com/RTagBot/gitline](https://github.com/RTagBot/gitline)
+Github: [https://github.com/RTagBot/cliff](https://github.com/RTagBot/cliff)
 
-Documentation: [https://rtagbot.github.io/git](https://rtagbot.github.io/gitline/)
+Documentation: [https://rtagbot.github.io/cliff](https://rtagbot.github.io/cliff/)
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 cat(d[colnames(d) == "Description"])
@@ -31,24 +31,23 @@ cat(d[colnames(d) == "Description"])
 
 ## Installation
 
-You can install the released version of git from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of cliff from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("gitline")
+# (not yet released)
+install.packages("cliff")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rtagbot/gitline")
+devtools::install_github("rtagbot/cliff")
 ```
 ## Example
 
 ```{r example}
-library(gitline)
+git <- function(...) cliff::run("git", ...)
 
-git("status")
-
-git("log", "--graph", "--oneline", "-n5")
+git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```

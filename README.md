@@ -1,67 +1,49 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# A Simple Wrapper for Git Command Line
+# Execute command line programs interactively
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/rtagbot/gitline/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/gitline/actions)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/gitline)](https://cran.r-project.org/package=gitline)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/git)](https://cran.r-project.org/package=git)
+[![R-CMD-check](https://github.com/rtagbot/cliff/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/cliff/actions)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->
 
-Github: <https://github.com/RTagBot/gitline>
+Github: <https://github.com/RTagBot/cliff>
 
 Documentation:
-[https://rtagbot.github.io/git](https://rtagbot.github.io/gitline/)
+[https://rtagbot.github.io/cliff](https://rtagbot.github.io/cliff/)
 
-While ‘git2r’ and ‘gert’ provide excellent bindings to the ‘libgit2’
-library, they do not cover all functionalities that the git command line
-offers. This simple wrapper of the git command line exposes the git
-command line to R and allows users to invoke git commands directly from
-R. Readers should keep in mind that there are performance trade-offs to
-use the wrapped command line instead of using directly the efficient
-‘libgit2’ library. In addition, user authentication cannot not handled
-seamlessly. In most situations, this should be only considered if
-‘git2r’ or ‘gert’ do not satisfy the needs.
+Execute command line programs and format results for interactive usage.
 
 ## Installation
 
-You can install the released version of git from
+You can install the released version of cliff from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("gitline")
+# (not yet released)
+install.packages("cliff")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rtagbot/gitline")
+devtools::install_github("rtagbot/cliff")
 ```
 
 ## Example
 
 ``` r
-library(gitline)
+git <- function(...) cliff::run("git", ...)
 
-git("status")
+git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## On branch master
-    ## Your branch is up to date with 'origin/master'.
+    ## commit 54b033ca7fe932f487cbd06e38d5d95654a73d08
+    ## Author: Randy Lai <randy.cs.lai@gmail.com>
+    ## Date:   Tue Oct 26 14:50:04 2021 -0700
     ## 
-    ## Changes to be committed:
-    ##   (use "git restore --staged <file>..." to unstage)
-    ##  modified:   README.Rmd
-
-``` r
-git("log", "--graph", "--oneline", "-n5")
-```
-
-    ## * 8fbe515 rename package
-    ## * 8bdb3a0 fix cran complaints
-    ## * 9ee0fd5 add ignore files
-    ## * 03296f2 skip on cran
-    ## * 519f5b6 update pkg site
+    ##     rename package

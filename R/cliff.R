@@ -1,90 +1,37 @@
-get_git_path  <- function() {
-    path <- getOption("git_path", Sys.which("git"))
-    if (is.null(path) && .Platform$OS.type == "windows") {
-        paths <- c(
-            "C:\\Program Files\\Git\\bin\\git.exe",
-            "C:\\Program Files (x86)\\Git\\bin\\git.exe"
-        )
-        for (p in paths) {
-            if (file.exists(p)) {
-                return(p)
-            }
-        }
-    }
-    if (is.null(path) || !nzchar(path)) {
-        abort("cannot find 'git' binary")
-    }
-    path
-}
-
-
-#' Running a Git Command
+#' Run a command line program and wait until it terminates.
 #' @import rlang
 #' @export
-#' @param ... the arguments pass to git command, supports the
+#' @param command the command to run
+#' @param ... the arguments pass to the program, supports the
 #'     [big bang](https://rlang.r-lib.org/reference/nse-force.html) operator `!!!`
 #' @param input text pass to stdin
+#' @param error_on_status raise an error if return code is not 0.
 #' @param wd working directory
-#' @param env additional environment variable pass to git
 #' @param timeout throw an error after this amount of time in second
-#' @param want_process return the underlying process object instead of the output
+#' @param env additional environment variables
 #' @return The stdout of the process in a scalar character.
 #' It may contain a trailing newline. Use `trimws()` to
 #' ensure the trailing newline is trimmed.
-#' @details
-#' If `git()` fails to locate the git binary automatically, the path could be
-#' specify with `options(git_path = "/path/to/git")`.
-#'
 #' @examples
 #' \donttest{
-#' cwd <- getwd()
-#' td <- file.path(tempdir(), "git-examples")
-#' dir.create(td, showWarnings = FALSE)
-#' setwd(td)
-#'
-#' git("init")
-#' git("config", "--local", "user.email", "you@example.com")
-#' git("config", "--local", "user.name", "Your Name")
-#'
-#' cat("hello\n", file = "hello.txt")
-#'
-#' git("status")
-#'
-#' git("add", "hello.txt")
-#'
-#' git("commit", "-m", "initial message")
-#'
-#' git("log")
-#'
-#' cat("world\n", file = "world.txt")
-#'
-#' git("add", "world.txt")
-#'
-#' git("commit", "-F", "-", input = "second message")
-#'
-#' (sha <- git("rev-parse", "HEAD"))
-#'
-#' git("show", sha)
-#'
-#' setwd(cwd)
+#' git <- function(...) cliff::run("git", ...)
+#' git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 #' }
 #'
-git <- function(
+run <- function(
+        command,
         ...,
         input = NULL,
+        error_on_status = TRUE,
         wd = NULL,
-        env = NULL,
         timeout = Inf,
-        want_process = FALSE) {
+        env = NULL) {
 
-    if (!want_process) {
-        on.exit({
-            try(p$kill(), silent = TRUE)
-        })
-    }
+    on.exit({
+        try(p$kill(), silent = TRUE)
+    })
 
     ellipsis::check_dots_unnamed()
-    git_path <- get_git_path()
     args <- list2(...)
     for (i in seq_along(args)) {
         a <- args[[i]]
@@ -94,10 +41,10 @@ git <- function(
     }
     args <- vapply(
         args,
-        function(x) if (inherits(x, "git_raw_output")) trimws(x) else x,
+        function(x) if (inherits(x, "cliff_raw_output")) trimws(x) else x,
         character(1))
     p <- processx::process$new(
-        git_path,
+        command,
         args,
         stdin = "|",
         stdout = "|",
@@ -112,9 +59,7 @@ git <- function(
         }
         close(p$get_input_connection())
     }
-    if (want_process) {
-        return(p)
-    }
+
     res <- tryCatch(
             fetch_result(p, timeout),
             interrupt = function(e) {
@@ -127,21 +72,21 @@ git <- function(
 
     if (res$timeout_happend) {
         cnd <- error_cnd(
-            c("git_timeout_error", "git_error"),
-            stdout = out, stderr = err, message = "git timeout exceeded")
+            c("cliff_timeout_error", "cliff_error"),
+            stdout = out, stderr = err, message = "program timeout exceeded")
         cnd_signal(cnd)
-    } else if (!identical(p$get_exit_status(), 0L)) {
-        message <- sprintf("git terminated with code %i", p$get_exit_status())
+    } else if (error_on_status && !identical(p$get_exit_status(), 0L)) {
+        message <- sprintf("program terminated with code %i", p$get_exit_status())
         if (nzchar(err) > 0) {
             message <- paste0(message, "\n", silver("Got the following in stderr:"), "\n", red(err))
         } else if (nzchar(out) > 0) {
             message <- paste0(message, "\n", silver("Got the following in stdout:"), "\n", out)
         }
-        cnd <- error_cnd("git_error", stdout = out, stderr = err, message = message)
+        cnd <- error_cnd("cliff_error", stdout = out, stderr = err, message = message)
         cnd_signal(cnd)
     }
 
-    structure(out, class = "git_raw_output", err = err)
+    structure(out, class = "cliff_raw_output", err = err)
 }
 
 
@@ -184,8 +129,8 @@ fetch_result <- function(proc, timeout) {
 
 
 #' @export
-#' @method print git_raw_output
-print.git_raw_output <- function(x, with_stderr = FALSE, ...) {
+#' @method print cliff_raw_output
+print.cliff_raw_output <- function(x, with_stderr = FALSE, ...) {
     err <- attr(x, "err")
     show_section <- nzchar(err) && nzchar(x)
     if (nzchar(err)) {
