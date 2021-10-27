@@ -39,7 +39,7 @@ ensure the trailing newline is trimmed.
 Run a command line program and wait until it terminates.
 }
 \examples{
-\donttest{
+\dontrun{
 git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 }

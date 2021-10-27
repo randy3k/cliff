@@ -13,7 +13,7 @@
 #' It may contain a trailing newline. Use `trimws()` to
 #' ensure the trailing newline is trimmed.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' git <- function(...) cliff::run("git", ...)
 #' git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 #' }
