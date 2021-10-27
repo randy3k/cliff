@@ -15,8 +15,8 @@ Github: <https://github.com/RTagBot/cliff>
 Documentation:
 [https://rtagbot.github.io/cliff](https://rtagbot.github.io/cliff/)
 
-Execute command line programs and format results for interactive usage.
-It is based on the package ‘processx’ so it supports additional features
+Execute command line programs and format results for interactive use. It
+is based on the package ‘processx’ so it supports additional features
 such as timeout and reading from stdin when compared with ‘system()’ and
 ‘system2()’. It also provides a simpler and cleaner interface than
 ‘processx::run()’.
@@ -46,7 +46,7 @@ git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## commit 803d2bd456845c73d7ec8ad992ddaeac1a9cb675
+    ## commit 9c537ae2bec03726382b1142d658db5674767f15
     ## Author: Randy Lai <randy.cs.lai@gmail.com>
     ## Date:   Wed Oct 27 10:00:24 2021 -0700
     ## 

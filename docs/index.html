@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Execute Command Line Programs Interactively">
-<meta property="og:description" content="Execute command line programs and format results for interactive usage. It is based on the package processx so it supports additional features such as timeout and reading from stdin when compared with system() and system2(). It also provides a simpler and cleaner interface than processx::run().">
+<meta property="og:description" content="Execute command line programs and format results for interactive use. It is based on the package processx so it supports additional features such as timeout and reading from stdin when compared with system() and system2(). It also provides a simpler and cleaner interface than processx::run().">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cliff</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
 
 <p>Github: <a href="https://github.com/RTagBot/cliff" class="uri">https://github.com/RTagBot/cliff</a></p>
 <p>Documentation: <a href="https://rtagbot.github.io/cliff/">https://rtagbot.github.io/cliff</a></p>
-<p>Execute command line programs and format results for interactive usage. It is based on the package ‘processx’ so it supports additional features such as timeout and reading from stdin when compared with ‘system()’ and ‘system2()’. It also provides a simpler and cleaner interface than ‘processx::run()’.</p>
+<p>Execute command line programs and format results for interactive use. It is based on the package ‘processx’ so it supports additional features such as timeout and reading from stdin when compared with ‘system()’ and ‘system2()’. It also provides a simpler and cleaner interface than ‘processx::run()’.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -93,7 +93,7 @@
 <code class="sourceCode R"><span class="va">git</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="fu">cliff</span><span class="fu">::</span><span class="fu"><a href="reference/run.html">run</a></span><span class="op">(</span><span class="st">"git"</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="fu">git</span><span class="op">(</span><span class="st">"log"</span>, <span class="fu">git</span><span class="op">(</span><span class="st">"rev-parse"</span>, <span class="st">"--abbrev-ref"</span>, <span class="st">"HEAD"</span><span class="op">)</span>, <span class="st">"-n1"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## commit 803d2bd456845c73d7ec8ad992ddaeac1a9cb675</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## commit 9c537ae2bec03726382b1142d658db5674767f15</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Author: Randy Lai &lt;randy.cs.lai@gmail.com&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Date:   Wed Oct 27 10:00:24 2021 -0700</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
