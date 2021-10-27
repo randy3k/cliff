@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Execute command line programs interactively
+# Execute Command Line Programs Interactively
 
 <!-- badges: start -->
 
@@ -16,6 +16,10 @@ Documentation:
 [https://rtagbot.github.io/cliff](https://rtagbot.github.io/cliff/)
 
 Execute command line programs and format results for interactive usage.
+It is based on the package ‘processx’ so it supports additional features
+such as timeout and reading from stdin when compared with ‘system()’ and
+‘system2()’. It also provides a simpler and cleaner interface than
+‘processx::run()’.
 
 ## Installation
 
@@ -42,8 +46,8 @@ git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## commit 54b033ca7fe932f487cbd06e38d5d95654a73d08
+    ## commit 803d2bd456845c73d7ec8ad992ddaeac1a9cb675
     ## Author: Randy Lai <randy.cs.lai@gmail.com>
-    ## Date:   Tue Oct 26 14:50:04 2021 -0700
+    ## Date:   Wed Oct 27 10:00:24 2021 -0700
     ## 
-    ##     rename package
+    ##     update DESCRIPTION
