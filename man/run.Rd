@@ -31,7 +31,7 @@ run(
 \item{env}{additional environment variables}
 }
 \value{
-The stdout of the process in a scalar character.
+The stdout of the program in a scalar character.
 It may contain a trailing newline. Use \code{trimws()} to
 ensure the trailing newline is trimmed.
 }

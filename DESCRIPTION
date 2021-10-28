@@ -6,7 +6,7 @@ Authors@R:
            family = "Lai",
            role = c("aut", "cre", "cph"),
            email = "randy.cs.lai@gmail.com")
-Description: Execute command line programs and format results for interactive use. It is based on the package 'processx' so it does not use shell to start up the process like 'system()' and 'system2()'. It also provides a simpler and cleaner interface than 'processx::run()'.
+Description: Execute command line programs and format results for interactive use. It is based on the package 'processx' so it does not use shell to start up the process like system() and system2(). It also provides a simpler and cleaner interface than processx::run().
 License: MIT + file LICENSE
 URL: https://github.com/RTagBot/cliff
 BugReports: https://github.com/RTagBot/cliff/issues

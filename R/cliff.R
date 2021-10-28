@@ -9,7 +9,7 @@
 #' @param wd working directory
 #' @param timeout throw an error after this amount of time in second
 #' @param env additional environment variables
-#' @return The stdout of the process in a scalar character.
+#' @return The stdout of the program in a scalar character.
 #' It may contain a trailing newline. Use `trimws()` to
 #' ensure the trailing newline is trimmed.
 #' @examples
@@ -73,10 +73,10 @@ run <- function(
     if (res$timeout_happend) {
         cnd <- error_cnd(
             c("cliff_timeout_error", "cliff_error"),
-            stdout = out, stderr = err, message = "program timeout exceeded")
+            stdout = out, stderr = err, message = "Program timeout exceeded.")
         cnd_signal(cnd)
     } else if (error_on_status && !identical(p$get_exit_status(), 0L)) {
-        message <- sprintf("program terminated with code %i", p$get_exit_status())
+        message <- sprintf("Program terminated with code %i.", p$get_exit_status())
         if (nzchar(err) > 0) {
             message <- paste0(message, "\n", silver("Got the following in stderr:"), "\n", red(err))
         } else if (nzchar(out) > 0) {
@@ -86,7 +86,7 @@ run <- function(
         cnd_signal(cnd)
     }
 
-    structure(out, class = "cliff_raw_output", err = err)
+    structure(out, class = "cliff_raw_output", err = err, status = p$get_exit_status())
 }
 
 
@@ -132,10 +132,14 @@ fetch_result <- function(proc, timeout) {
 #' @method print cliff_raw_output
 print.cliff_raw_output <- function(x, with_stderr = FALSE, ...) {
     err <- attr(x, "err")
+    status <- attr(x, "status")
     show_section <- nzchar(err) && nzchar(x)
+    if (status != 0L) {
+        cat(sprintf("Program terminated with code %i.\n", status), file = stderr())
+    }
     if (nzchar(err)) {
-        cat(silver("Got the following in stderr:\n"))
-        cat(err, file = stderr())
+        cat(silver("Got the following in stderr:\n"), file = stderr())
+        cat(red(err), file = stderr())
     }
     if (nzchar(x)) {
         if (show_section) cat(silver("Got the following in stdout:\n"))

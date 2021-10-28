@@ -17,8 +17,8 @@ Documentation:
 
 Execute command line programs and format results for interactive use. It
 is based on the package ‘processx’ so it does not use shell to start up
-the process like ‘system()’ and ‘system2()’. It also provides a simpler
-and cleaner interface than ‘processx::run()’.
+the process like system() and system2(). It also provides a simpler and
+cleaner interface than processx::run().
 
 ## Installation
 
@@ -45,8 +45,8 @@ git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## commit 55b20b7ca1d675469bd5b1c18e4e00c12fc4d984
+    ## commit e5e82396ed5572e402d518ac7f81b94999f02136
     ## Author: Randy Lai <randy.cs.lai@gmail.com>
-    ## Date:   Wed Oct 27 10:07:23 2021 -0700
+    ## Date:   Wed Oct 27 23:54:47 2021 -0700
     ## 
-    ##     bump to 0.1.2
+    ##     improve error formating
