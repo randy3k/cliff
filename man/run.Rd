@@ -9,6 +9,7 @@ run(
   ...,
   input = NULL,
   error_on_status = TRUE,
+  stderr_to_stdout = FALSE,
   wd = NULL,
   timeout = Inf,
   env = NULL
@@ -23,6 +24,8 @@ run(
 \item{input}{text pass to stdin}
 
 \item{error_on_status}{raise an error if return code is not 0.}
+
+\item{stderr_to_stdout}{whether stderr should be forwarded to stdout.}
 
 \item{wd}{working directory}
 
