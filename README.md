@@ -26,7 +26,6 @@ You can install the released version of cliff from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-# (not yet released)
 install.packages("cliff")
 ```
 
@@ -45,7 +44,7 @@ git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## commit e5e82396ed5572e402d518ac7f81b94999f02136
+    ## commit 1647747734e16f7525e70b351e52806b4b903ac4
     ## Author: Randy Lai <randy.cs.lai@gmail.com>
     ## Date:   Wed Oct 27 23:54:47 2021 -0700
     ## 

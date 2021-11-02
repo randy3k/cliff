@@ -6,6 +6,7 @@
 #'     [big bang](https://rlang.r-lib.org/reference/nse-force.html) operator `!!!`
 #' @param input text pass to stdin
 #' @param error_on_status raise an error if return code is not 0.
+#' @param stderr_to_stdout whether stderr should be forwarded to stdout.
 #' @param wd working directory
 #' @param timeout throw an error after this amount of time in second
 #' @param env additional environment variables
@@ -23,6 +24,7 @@ run <- function(
         ...,
         input = NULL,
         error_on_status = TRUE,
+        stderr_to_stdout = FALSE,
         wd = NULL,
         timeout = Inf,
         env = NULL) {
@@ -61,7 +63,7 @@ run <- function(
     }
 
     res <- tryCatch(
-            fetch_result(p, timeout),
+            fetch_result(p, stderr_to_stdout, timeout),
             interrupt = function(e) {
                 try(p$kill(), silent = TRUE)
                 invokeRestart("abort")
@@ -86,11 +88,11 @@ run <- function(
         cnd_signal(cnd)
     }
 
-    structure(out, class = "cliff_raw_output", err = err, status = p$get_exit_status())
+    structure(out, class = "cliff_raw_output", stderr = err, status = p$get_exit_status())
 }
 
 
-fetch_result <- function(proc, timeout) {
+fetch_result <- function(proc, stderr_to_stdout, timeout) {
     out <- ""
     err <- ""
 
@@ -111,7 +113,11 @@ fetch_result <- function(proc, timeout) {
         }
         proc$poll_io(remaining)
         out <- paste0(out, proc$read_output(2000))
-        err <- paste0(err, proc$read_error(2000))
+        if (stderr_to_stdout) {
+            out <- paste0(out, proc$read_error(2000))
+        } else {
+            err <- paste0(err, proc$read_error(2000))
+        }
     }
     # make sure the process is done
     if (!timeout_happend) {
@@ -121,7 +127,11 @@ fetch_result <- function(proc, timeout) {
            (proc$has_error_connection() && proc$is_incomplete_error())) {
         proc$poll_io(-1)
         out <- paste0(out, proc$read_output(2000))
-        err <- paste0(err, proc$read_error(2000))
+        if (stderr_to_stdout) {
+            out <- paste0(out, proc$read_error(2000))
+        } else {
+            err <- paste0(err, proc$read_error(2000))
+        }
     }
 
     list(out = out, err = err, timeout_happend = timeout_happend)
@@ -131,15 +141,15 @@ fetch_result <- function(proc, timeout) {
 #' @export
 #' @method print cliff_raw_output
 print.cliff_raw_output <- function(x, with_stderr = FALSE, ...) {
-    err <- attr(x, "err")
+    stderr <- attr(x, "stderr")
     status <- attr(x, "status")
-    show_section <- nzchar(err) && nzchar(x)
+    show_section <- nzchar(stderr) && nzchar(x)
     if (status != 0L) {
         cat(sprintf("Program terminated with code %i.\n", status), file = stderr())
     }
-    if (nzchar(err)) {
+    if (nzchar(stderr)) {
         cat(silver("Got the following in stderr:\n"), file = stderr())
-        cat(red(err), file = stderr())
+        cat(red(stderr), file = stderr())
     }
     if (nzchar(x)) {
         if (show_section) cat(silver("Got the following in stdout:\n"))

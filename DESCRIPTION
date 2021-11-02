@@ -1,6 +1,6 @@
 Package: cliff
 Title: Execute Command Line Programs Interactively
-Version: 0.1.2
+Version: 0.1.2.9999
 Authors@R:
     person(given = "Randy",
            family = "Lai",

@@ -34,7 +34,6 @@ cat(d[colnames(d) == "Description"])
 You can install the released version of cliff from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-# (not yet released)
 install.packages("cliff")
 ```
 
