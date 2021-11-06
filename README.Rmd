@@ -15,13 +15,13 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 ```
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/randy3k/cliff/workflows/R-CMD-check/badge.svg)](https://github.com/randy3k/cliff/actions)
+[![Check](https://github.com/randy3k/cliff/actions/workflows/check.yaml/badge.svg)](https://github.com/randy3k/cliff/actions/workflows/check.yaml)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->
 
 
-Github: [https://github.com/RTagBot/cliff](https://github.com/RTagBot/cliff)
+Github: [https://github.com/randy3k/cliff](https://github.com/randy3k/cliff)
 
 Documentation: [https://randy3k.github.io/cliff](https://randy3k.github.io/cliff/)
 
