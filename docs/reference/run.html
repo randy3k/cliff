@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cliff</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9999</span>
       </span>
     </div>
 
@@ -87,10 +87,13 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RTagBot/cliff/">
+  <a href="https://github.com/randy3k/cliff/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -109,7 +112,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Run a command line program and wait until it terminates.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RTagBot/cliff/blob/master/R/cliff.R'><code>R/cliff.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/randy3k/cliff/blob/master/R/cliff.R'><code>R/cliff.R</code></a></small>
     <div class="hidden name"><code>run.Rd</code></div>
     </div>
 
@@ -122,6 +125,7 @@
   <span class='va'>...</span>,
   input <span class='op'>=</span> <span class='cn'>NULL</span>,
   error_on_status <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stderr_to_stdout <span class='op'>=</span> <span class='cn'>FALSE</span>,
   wd <span class='op'>=</span> <span class='cn'>NULL</span>,
   timeout <span class='op'>=</span> <span class='cn'>Inf</span>,
   env <span class='op'>=</span> <span class='cn'>NULL</span>
@@ -146,6 +150,10 @@
     <tr>
       <th>error_on_status</th>
       <td><p>raise an error if return code is not 0.</p></td>
+    </tr>
+    <tr>
+      <th>stderr_to_stdout</th>
+      <td><p>whether stderr should be forwarded to stdout.</p></td>
     </tr>
     <tr>
       <th>wd</th>

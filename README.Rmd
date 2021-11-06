@@ -15,7 +15,7 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 ```
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rtagbot/cliff/workflows/R-CMD-check/badge.svg)](https://github.com/rtagbot/cliff/actions)
+[![R-CMD-check](https://github.com/randy3k/cliff/workflows/R-CMD-check/badge.svg)](https://github.com/randy3k/cliff/actions)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->
@@ -23,7 +23,7 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 
 Github: [https://github.com/RTagBot/cliff](https://github.com/RTagBot/cliff)
 
-Documentation: [https://rtagbot.github.io/cliff](https://rtagbot.github.io/cliff/)
+Documentation: [https://randy3k.github.io/cliff](https://randy3k.github.io/cliff/)
 
 ```{r results="asis", echo = FALSE, eval = TRUE}
 cat(d[colnames(d) == "Description"])
@@ -41,7 +41,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rtagbot/cliff")
+devtools::install_github("randy3k/cliff")
 ```
 ## Example
 

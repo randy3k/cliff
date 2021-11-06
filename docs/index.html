@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cliff</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9999</span>
       </span>
     </div>
 
@@ -46,10 +46,13 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RTagBot/cliff/">
+  <a href="https://github.com/randy3k/cliff/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -72,19 +75,18 @@
 <!-- badges: start -->
 
 <p>Github: <a href="https://github.com/RTagBot/cliff" class="uri">https://github.com/RTagBot/cliff</a></p>
-<p>Documentation: <a href="https://rtagbot.github.io/cliff/">https://rtagbot.github.io/cliff</a></p>
+<p>Documentation: <a href="https://randy3k.github.io/cliff/">https://randy3k.github.io/cliff</a></p>
 <p>Execute command line programs and format results for interactive use. It is based on the package ‘processx’ so it does not use shell to start up the process like system() and system2(). It also provides a simpler and cleaner interface than processx::run().</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of cliff from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># (not yet released)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"cliff"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"cliff"</span><span class="op">)</span></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rtagbot/cliff"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"randy3k/cliff"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -93,11 +95,11 @@
 <code class="sourceCode R"><span class="va">git</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="fu">cliff</span><span class="fu">::</span><span class="fu"><a href="reference/run.html">run</a></span><span class="op">(</span><span class="st">"git"</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="fu">git</span><span class="op">(</span><span class="st">"log"</span>, <span class="fu">git</span><span class="op">(</span><span class="st">"rev-parse"</span>, <span class="st">"--abbrev-ref"</span>, <span class="st">"HEAD"</span><span class="op">)</span>, <span class="st">"-n1"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## commit e5e82396ed5572e402d518ac7f81b94999f02136</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## commit cf5cdb734aac42f5350ea690874554bfaa94b8dc</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Author: Randy Lai &lt;randy.cs.lai@gmail.com&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Date:   Wed Oct 27 23:54:47 2021 -0700</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Date:   Tue Nov 2 13:49:25 2021 -0700</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     improve error formating</span></span></code></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     update docs</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -106,9 +108,11 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/RTagBot/cliff/">https://​github.com/​RTagBot/​cliff/​</a>
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=cliff">https://​cloud.r-project.org/​package=cliff</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/RTagBot/cliff/issues">https://​github.com/​RTagBot/​cliff/​issues</a>
+<li>Browse source code at <br><a href="https://github.com/randy3k/cliff/">https://​github.com/​randy3k/​cliff/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/randy3k/cliff/issues">https://​github.com/​randy3k/​cliff/​issues</a>
 </li>
 </ul>
 </div>
@@ -129,7 +133,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rtagbot/cliff/actions"><img src="https://github.com/rtagbot/cliff/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/randy3k/cliff/actions"><img src="https://github.com/randy3k/cliff/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://cran.r-project.org/package=cliff"><img src="https://www.r-pkg.org/badges/version/cliff" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://cran.r-project.org/package=cliff"><img src="https://cranlogs.r-pkg.org/badges/grand-total/cliff"></a></li>
 </ul>
