@@ -15,7 +15,8 @@ cat(c("# ", paste(trimws(strsplit(title, "\n")[[1]]), collapse = " ")))
 ```
 
 <!-- badges: start -->
-[![Check](https://github.com/randy3k/cliff/actions/workflows/check.yaml/badge.svg)](https://github.com/randy3k/cliff/actions/workflows/check.yaml)
+[![check](https://github.com/randy3k/cliff/actions/workflows/check.yaml/badge.svg)](https://github.com/randy3k/cliff/actions/workflows/check.yaml)
+[![codecov](https://codecov.io/gh/randy3k/cliff/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/cliff)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->

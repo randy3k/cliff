@@ -5,7 +5,8 @@
 
 <!-- badges: start -->
 
-[![Check](https://github.com/randy3k/cliff/actions/workflows/check.yaml/badge.svg)](https://github.com/randy3k/cliff/actions/workflows/check.yaml)
+[![check](https://github.com/randy3k/cliff/actions/workflows/check.yaml/badge.svg)](https://github.com/randy3k/cliff/actions/workflows/check.yaml)
+[![codecov](https://codecov.io/gh/randy3k/cliff/branch/master/graph/badge.svg)](https://codecov.io/gh/randy3k/cliff)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cliff)](https://cran.r-project.org/package=cliff)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/cliff)](https://cran.r-project.org/package=cliff)
 <!-- badges: end -->
@@ -44,7 +45,7 @@ git <- function(...) cliff::run("git", ...)
 git("log", git("rev-parse", "--abbrev-ref", "HEAD"), "-n1")
 ```
 
-    ## commit 44cf00890f205e272937fc911a9df8351203a726
+    ## commit 4e877ae133e77889513e7b56519eb6ec3062a768
     ## Author: Randy Lai <randy.cs.lai@gmail.com>
     ## Date:   Sat Nov 6 15:31:23 2021 -0700
     ## 
